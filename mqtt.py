@@ -1,4 +1,6 @@
 import sys
+import random
+import time
 from Adafruit_IO import MQTTClient
 AIO_USERNAME = "PhamBaoLongGroupAI"
 AIO_KEY = ""
@@ -27,4 +29,6 @@ client.connect()
 client.loop_background()
 
 while True:
+    time.sleep(5)
+    client.publish("sensor1", random.randint(20, 700))
     pass
