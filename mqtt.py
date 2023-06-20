@@ -3,13 +3,13 @@ import random
 import time
 from Adafruit_IO import MQTTClient
 AIO_USERNAME = "PhamBaoLongGroupAI"
-AIO_KEY = ""
+AIO_KEY = "aio_QQwL63yQXkZFqCKB3yvPEDdpFod0"
 def subscribe(client , userdata , mid , granted_qos):
     print("Subscribe thanh cong ...")
     
 def connected(client):
     print("Ket noi thanh cong ...")
-    client.subscribe("sensor1")
+    client.subscribe("button1")
 
 def disconnected(client):
     print("Ngat ket noi ...")
