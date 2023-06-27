@@ -5,12 +5,12 @@ from Adafruit_IO import MQTTClient
 import requests
 
 AIO_USERNAME = "PhamBaoLongGroupAI"
-AIO_KEY = "aio_ersy09lEYFKpGJxPKYHkireEd6JN"
+AIO_KEY = ""
 global_equation = "(x1*x2)/x3" #global variable
 
 def init_global_equation(): #Implement the HTTP Get
     headers = {}
-    aio_url = "https://io.adafruit.com/api/v2/PhamBaoLongGroupAI/feeds/newgroup.equation"
+    aio_url = ""
     x = requests.get(url = aio_url, headers = headers, verify = False)
     data = x.json()
     global_equation = data["last_value"]
