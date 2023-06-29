@@ -5,12 +5,12 @@ from Adafruit_IO import MQTTClient
 import requests
 
 AIO_USERNAME = "PhamBaoLongGroupAI"
-AIO_KEY = "aio_ersy09lEYFKpGJxPKYHkireEd6JN"
+AIO_KEY = "aio_MMAM28xrJImqDLHIC8fOdErwn5Zd"
 global_equation = "(x1*x2)/x3" #global variable
 
 def init_global_equation(): #Implement the HTTP Get
     headers = {}
-    aio_url = "https://io.adafruit.com/api/v2/PhamBaoLongGroupAI/feeds/newgroup.equation"
+    aio_url = "https://io.adafruit.com/api/v2/PhamBaoLongGroupAI/feeds/equation"
     x = requests.get(url = aio_url, headers = headers, verify = False)
     data = x.json()
     global_equation = data["last_value"]
@@ -22,20 +22,20 @@ def modify_value(x1, x2, x3): #Eval_funciton
     return result
 
 def subscribe(client , userdata , mid , granted_qos):
-    print("Subscribe thanh cong ...")
+    print("Subscribe successfully ...")
     
 def connected(client):
-    print("Ket noi thanh cong ...")
+    print("Connect successfully ...")
     client.subscribe("button1")
     client.subscribe("equation")
 
 def disconnected(client):
-    print("Ngat ket noi ...")
+    print("Disconnect ...")
     sys.exit (1)
 
 
 def message(client , feed_id , payload):
-    print("Nhan du lieu: " + payload)
+    print("Input data: " + payload)
     if (feed_id == "equation"):
         global_equation = payload
         print(global_equation)
@@ -53,9 +53,9 @@ init_global_equation()
 
 while True:
     time.sleep(3)
-    sensor1 = random.randint(20, 700)
-    sensor2 = random.randint(50, 600)
-    sensor3 = random.randint(12, 4)
+    sensor1 = random.randint(20, 100)
+    sensor2 = random.randint(50, 200)
+    sensor3 = random.randint(12, 49)
     client.publish("sensor1", sensor1)
     client.publish("sensor2", sensor2) 
     client.publish("sensor3", sensor3)
@@ -64,5 +64,6 @@ while True:
     print("sensor2: ", sensor2)
     print("sensor3: ", sensor3)
     print("Result: ", sensor4)
+    break
     pass
 
